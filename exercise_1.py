@@ -1,11 +1,12 @@
 import math
 import random
 
-
+'''Константы диапазона случайных точек х и у'''
 MAX_RANDINT = 25
 MIN_RANDINT = 1
 
 
+'''Создаем инстанс линии из двух точек со случайными координатами и проверяем через .match() может ли она существовать'''
 def make_random_line():
     while True:
         line = Line(Point(random.randint(MIN_RANDINT,MAX_RANDINT), random.randint(MIN_RANDINT,MAX_RANDINT)),
@@ -14,6 +15,8 @@ def make_random_line():
             return line
 
 
+'''Создаем инстанс треугольника из трех точек со случайными координатами и проверяем через .match() 
+и проверку совпадения точек может ли он существовать'''
 def make_random_triangle():
     while True:
         point_1 = [random.randint(MIN_RANDINT, MAX_RANDINT), random.randint(MIN_RANDINT, MAX_RANDINT)]
@@ -28,6 +31,8 @@ def make_random_triangle():
                 return triangle
 
 
+'''Создаем инстанс квадрата из четырех точек со случайными координатами и проверяем через .match() 
+и проверку совпадения точек может ли он существовать'''
 def make_random_square():
     while True:
         point_1 = [random.randint(MIN_RANDINT,MAX_RANDINT),random.randint(MIN_RANDINT,MAX_RANDINT)]
@@ -61,6 +66,7 @@ class Line:
         self.point_1 = point_1
         self.point_2 = point_2
 
+    '''Метод для вычисления длины отрезка'''
     def length(self):
         return math.sqrt(
             ((self.point_2.x-self.point_1.x)**2) + ((self.point_2.y-self.point_1.y)**2)
@@ -69,6 +75,7 @@ class Line:
     def line_name(self):
         return f'{self.point_1}|{self.point_2} | {self.length()}'
 
+    '''Метод для проверки его существования. Если точки совпадают, то это уже не отрезок, верно?'''
     def match(self):
         return (self.point_1.x != self.point_2.x) and (self.point_1.y != self.point_2.y)
 
@@ -80,11 +87,13 @@ class Triangle:
         self.side_2 = Line(point_2, point_3)
         self.side_3 = Line(point_3, point_1)
 
+    '''Метод для проверки существования треугольника. Каждая сторона должна быть меньше суммы двух других'''
     def match(self):
         return self.side_1.length() + self.side_2.length() > self.side_3.length() \
                and self.side_1.length() + self.side_3.length() > self.side_2.length() \
                and self.side_2.length() + self.side_3.length() > self.side_1.length()
 
+    '''Измеряем его площадь через полупериметр'''
     def square(self):
         p = (self.side_1.length() + self.side_2.length() + self.side_3.length())/2
         return math.sqrt(p * (p-self.side_1.length()) * (p-self.side_2.length()) * (p-self.side_3.length()))
@@ -101,6 +110,7 @@ class Square:
         self.side_3 = Line(point_3, point_4)
         self.side_4 = Line(point_4, point_1)
 
+    '''Проверяем существование квадрата путем сравнения сторон и диагоналей'''
     def match(self):
             return self.side_1.length() == self.side_2.length() \
                    and self.side_2.length() == self.side_3.length() \
@@ -109,6 +119,7 @@ class Square:
                    and self.side_1.length() == self.side_3.length() \
                    and self.side_2.length() == self.side_4.length()
 
+    '''Просто площадь'''
     def square(self):
         return self.side_1.length()**2
 
@@ -117,6 +128,7 @@ class Square:
                f'- ({self.side_3.line_name()}) - ({self.side_4.line_name()})'
 
 
+'''Функция которая создает указанное количество инстансов линий и находит самую длинную. Так же выводит ее на экран'''
 def find_max_length(qnt_of_lines=5):
     rand_arr = {}
     for i in range(qnt_of_lines):
@@ -128,6 +140,8 @@ def find_max_length(qnt_of_lines=5):
     print(max(rand_arr.values()))
 
 
+'''Функция которая создает указанное количество инстансов треугольников
+ и находит самую большую площадь. Так же выводит их на экран'''
 def find_max_triangle_square(qnt_of_lines=5):
     rand_arr = {}
     for i in range(qnt_of_lines):
@@ -139,6 +153,8 @@ def find_max_triangle_square(qnt_of_lines=5):
     print(max(rand_arr.values()))
 
 
+'''Функция которая создает указанное количество инстансов квадратов
+ и находит самую большую площадь. Так же выводит их на экран'''
 def find_max_square_square(qnt_of_lines=5):
     rand_arr = {}
     for i in range(qnt_of_lines):
@@ -148,8 +164,5 @@ def find_max_square_square(qnt_of_lines=5):
     for square in rand_arr:
         print(f'{square} | {rand_arr[square]}')
     print(max(rand_arr.values()))
-
-
-
 
 
