@@ -16,12 +16,16 @@ def make_random_line():
 
 def make_random_triangle():
     while True:
-        triangle = Triangle(Point(random.randint(MIN_RANDINT,MAX_RANDINT), random.randint(MIN_RANDINT,MAX_RANDINT)),
-                            Point(random.randint(MIN_RANDINT,MAX_RANDINT), random.randint(MIN_RANDINT,MAX_RANDINT)),
-                            Point(random.randint(MIN_RANDINT,MAX_RANDINT), random.randint(MIN_RANDINT,MAX_RANDINT)),
-                            )
-        if triangle.match():
-            return triangle
+        point_1 = [random.randint(MIN_RANDINT, MAX_RANDINT), random.randint(MIN_RANDINT, MAX_RANDINT)]
+        point_2 = [random.randint(MIN_RANDINT, MAX_RANDINT), random.randint(MIN_RANDINT, MAX_RANDINT)]
+        point_3 = [random.randint(MIN_RANDINT, MAX_RANDINT), random.randint(MIN_RANDINT, MAX_RANDINT)]
+        if point_1 != point_2 and point_1 != point_3 and point_2 != point_3:
+            point_1 = Point(point_1[0], point_1[1])
+            point_2 = Point(point_2[0], point_2[1])
+            point_3 = Point(point_3[0], point_3[1])
+            triangle = Triangle(point_1, point_2, point_3)
+            if triangle.match():
+                return triangle
 
 
 def make_random_square():
@@ -144,5 +148,8 @@ def find_max_square_square(qnt_of_lines=5):
     for square in rand_arr:
         print(f'{square} | {rand_arr[square]}')
     print(max(rand_arr.values()))
+
+
+
 
 
