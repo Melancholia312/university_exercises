@@ -12,7 +12,7 @@ def close_them_all(string):
                 if stack[-1] == dict_hooks[symbol]:
                     stack.pop() #Если скобка закрывает ту, которая была в стеке последней, то удаляем ее из него
                 else: #Во всех остальных случаях добавляем скобку в наш стек
-                        stack.append(symbol)
+                    stack.append(symbol)
             except (IndexError, KeyError):
                 stack.append(symbol)
 
