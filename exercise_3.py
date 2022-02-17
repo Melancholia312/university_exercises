@@ -5,7 +5,7 @@ def add_nums_with_type_string(string):
 
     numbers_arr = re.split(r'[-+]', string) #Отделяем числа от знаков
 
-    if not (len(numbers_arr) >= 2 and numbers_arr[0]): #Проверяем, что на вход нам пришло минимум 2 числа
+    if not len(numbers_arr) >= 2: #Проверяем, что на вход нам пришло минимум 2 числа
         return None
 
     result = int(numbers_arr[0]) #Заносим первое число в список для последующего сложения
@@ -20,5 +20,5 @@ def add_nums_with_type_string(string):
 print(add_nums_with_type_string('1+2+3-6')) # 0
 print(add_nums_with_type_string('1+2+3+6-10')) # 2
 print(add_nums_with_type_string('1000-1001')) # -1
-print(add_nums_with_type_string('-1001')) # None
 print(add_nums_with_type_string('100')) # None
+
