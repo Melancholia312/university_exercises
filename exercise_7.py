@@ -53,8 +53,7 @@ class LinkedList:
             node = node.next_node
 
     def delete_list(self):
-        self.head = self.Node(None)
-
+        self.head = None
     def print_list(self):
         node = self.head
 
@@ -77,6 +76,6 @@ linked_list.add_after_v(100, 500)
 linked_list.print_list() # 100, 500, 1, 2, 3, 4, 5, 10
 
 linked_list.delete_list()
-linked_list.print_list() # None
+linked_list.print_list() # Error
 
 
