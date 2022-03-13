@@ -54,6 +54,7 @@ class LinkedList:
 
     def delete_list(self):
         self.head = None
+        
     def print_list(self):
         node = self.head
 
